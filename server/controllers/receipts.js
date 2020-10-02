@@ -74,3 +74,40 @@ exports.getReceipts = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateReceipts = async (req, res, next) => {
+  const receiptNumber = req.body.receipt;
+  const newDropPoint = req.body.dropPoint;
+  const newDropTime = req.body.dropTime;
+
+  try {
+    const searchReceiptQuery = await pool.query(
+      `SELECT * FROM receipts WHERE receipt_number='${receiptNumber}'`
+    );
+
+    receiptFound = searchReceiptQuery.rowCount == 1 ? true : false;
+
+    if (receiptFound) {
+      receiptData = searchReceiptQuery.rows[0];
+      console.log(receiptData);
+
+      const updatePointQuery = await pool.query(
+        `UPDATE receipts SET drop_point = array_append(drop_point, '${newDropPoint}') where receipt_number = '${receiptNumber}'`
+      );
+
+      console.log(updatePointQuery);
+
+      const updateTimeQuery = await pool.query(
+        `UPDATE receipts SET drop_time = array_append(drop_time, '${newDropTime}') where receipt_number = '${receiptNumber}'`
+      );
+
+      console.log(updateTimeQuery);
+
+      return res.status(201).json("success");
+    } else {
+      errorFunc(401, "Data not found!");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
