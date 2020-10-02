@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
+const invoiceRoutes = require("./routes/invoice");
+
 const PORT = process.env.PORT || 8000;
 
 const app = express();
@@ -9,9 +11,12 @@ app.use(express.json());
 
 app.use(cors());
 
+// Routes middleware
 app.get("/", (req, res, next) => {
-  res.status(200).json("Success");
+  res.status(200).json("Welcome to the server side of Bintex!");
 });
+
+app.use("/api/invoice", invoiceRoutes);
 
 // Errors middleware
 app.use((error, req, res, next) => {
