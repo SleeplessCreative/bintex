@@ -1,12 +1,10 @@
-const pool = require("../db/dev/pool");
+const { pool } = require("../db/dev/pool");
 
 /**
  *
  * @param {*} errorCode error code
  * @param {*} message message that explaining the error(s)
  */
-
-const { default: pool } = require("../db/dev/pool");
 
 const errorFunc = (errorCode, message) => {
   const error = new Error(message);
@@ -26,20 +24,51 @@ exports.createReceipt = async (req, res, next) => {
 
   try {
     const receiptQuery = await pool.query(
-      `INSERT INTO receipts (receipt_number, origin, destination, shipment_date, consignee, shipper, drop_point, drop_time)
-      VALUES ('${receiptNumber}', '${origin}', '${destination}', '${shipment_date}', '${consignee}', '${shipper}', '${dropPoint}', '${dropTime}')
+      `INSERT INTO receipts (receipt_number, origin, destination, shipment_date, consignee, shipper)
+      VALUES ('${receiptNumber}', '${origin}', '${destination}', '${shipment_date}', '${consignee}', '${shipper}')
       `
     );
 
-    const inserted =
-      (await receiptQuery.rows[0].receipt_number) == receiptNumber
-        ? true
-        : false;
+    const inserted = receiptQuery.command == "INSERT" ? true : false;
 
     if (inserted) {
       return res.status(201).json("New receipts created");
     } else {
       errorFunc(406, "Data not inserted!");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getReceipts = async (req, res, next) => {
+  const receiptNumber = req.body.receipt;
+
+  try {
+    const searchReceiptQuery = await pool.query(
+      `SELECT * FROM receipts WHERE receipt_number='${receiptNumber}'`
+    );
+
+    // console.log(searchReceiptQuery);
+    receiptFound = searchReceiptQuery.rowCount == 1 ? true : false;
+
+    if (receiptFound) {
+      receiptData = searchReceiptQuery.rows[0];
+      console.log(receiptData);
+      return res.status(201).json({
+        shipmentDate: {
+          receiptNumber: receiptData.receipt_number,
+          origin: receiptData.origin,
+          destination: receiptData.destination,
+          shipmentDate: receiptData.shipment_date,
+          consignee: receiptData.consignee,
+          shipper: receiptData.shipper,
+          dropPoint: receiptData.drop_point,
+          dropTime: receiptData.drop_time,
+        },
+      });
+    } else {
+      errorFunc(401, "Data not found!");
     }
   } catch (err) {
     next(err);
