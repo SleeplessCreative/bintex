@@ -19,13 +19,11 @@ exports.createReceipt = async (req, res, next) => {
   const shipment_date = req.body.shipment_date;
   const consignee = req.body.consignee;
   const shipper = req.body.shipper;
-  const dropPoint = req.body.dropPoint;
-  const dropTime = req.body.dropTime;
 
   try {
     const receiptQuery = await pool.query(
-      `INSERT INTO receipts (receipt_number, origin, destination, shipment_date, consignee, shipper)
-      VALUES ('${receiptNumber}', '${origin}', '${destination}', '${shipment_date}', '${consignee}', '${shipper}')
+      `INSERT INTO receipts (receipt_number, origin, destination, shipment_date, consignee, shipper, drop_point, drop_time)
+      VALUES ('${receiptNumber}', '${origin}', '${destination}', '${shipment_date}', '${consignee}', '${shipper}', '{${origin}}', '{${shipment_date}}')
       `
     );
 
