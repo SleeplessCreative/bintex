@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Open+Sans:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+  @apply text-primary;
+}
+a:hover {
+  @apply text-primary-dark;
+}
+
+h1 {
+  @apply text-primary-dark;
+  @apply font-display;
+}
