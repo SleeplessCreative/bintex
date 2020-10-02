@@ -8,4 +8,6 @@ router.post("/receipts", receiptsController.createReceipt);
 
 router.get("/receipts", receiptsController.getReceipts);
 
+router.put("/receipts", receiptsController.updateReceipts);
+
 module.exports = router;
