@@ -5,9 +5,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "start": "npm run develop"
+    "develop": "gatsby develop -p 3001",
+    "build": "gatsby build"
   },
   "dependencies": {
     "gatsby": "^2.18.18",
