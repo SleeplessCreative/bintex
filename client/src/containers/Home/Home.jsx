@@ -21,7 +21,7 @@ const Home = ({ children }) => {
               <Button size="lg">SOON!</Button>
             </p>
           </div>
-          <div className="w-1/2 pt-8 md:pt-15 self-center">
+          <div className="flex-1 m-auto w-full pt-8 sm:w-9/12 md:pt-15 md:w-6/12 lg:w-1/2">
             <Illustration1 />
           </div>
         </div>
