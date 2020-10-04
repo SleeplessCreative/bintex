@@ -7,7 +7,7 @@
   "scripts": {
     "develop": "gatsby develop -p 3001",
     "build": "gatsby build",
-    "build:css": "tailwind build src/css/tailwind.css -o public/style.css"
+    "build:css": "tailwind build src/css/tailwind.css -o src/css/style.css"
   },
   "dependencies": {
     "gatsby": "^2.18.18",
