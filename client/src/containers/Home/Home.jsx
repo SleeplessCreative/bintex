@@ -1,12 +1,25 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+
 import Footer from '../../components/layout/Footer';
 import Header from '../../components/layout/Header';
 import Button from '../../components/Button';
 import Illustration1 from '../../svg/Illustration1';
+import LogoIcon from '../../ico/favicon.ico';
 
 const Home = ({ children }) => {
   return (
     <>
+      <div className="application">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Bintex</title>
+          <html lang={'en'} />
+          <meta name="description" content={'Coming soon!'} />
+          <link rel="icon" href={LogoIcon}></link>
+          <meta name="theme-color" content="#D8C7FF" />
+        </Helmet>
+      </div>
       <Header />
       <section className="bg-accent-light max-h-screen max-w-full justify-center pb-24">
         <div className="container mx-auto px-8 lg:flex py-10">
