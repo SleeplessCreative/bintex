@@ -57,3 +57,10 @@ CREATE TABLE cashiers (
     FOREIGN KEY(user_id) 
 	    REFERENCES users(user_id)
 );
+
+CREATE TABLE agents (
+  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  profile_picture VARCHAR(15) NOT NULL,
+  address VARCHAR(255) NOT NULL
+);
