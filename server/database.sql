@@ -49,13 +49,9 @@ CREATE TABLE administrators (
 );
 
 CREATE TABLE cashiers (
-  user_id VARCHAR(9),
+  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
-  profile_picture VARCHAR(15) NOT NULL,
-  PRIMARY KEY(user_id),
-  CONSTRAINT fk_user_id
-    FOREIGN KEY(user_id) 
-	    REFERENCES users(user_id)
+  profile_picture VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE agents (
