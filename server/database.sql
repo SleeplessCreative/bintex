@@ -47,3 +47,13 @@ CREATE TABLE administrators (
     FOREIGN KEY(user_id) 
 	    REFERENCES users(user_id)
 );
+
+CREATE TABLE cashiers (
+  user_id VARCHAR(9),
+  name VARCHAR(50) NOT NULL,
+  profile_picture VARCHAR(15) NOT NULL,
+  PRIMARY KEY(user_id),
+  CONSTRAINT fk_user_id
+    FOREIGN KEY(user_id) 
+	    REFERENCES users(user_id)
+);
