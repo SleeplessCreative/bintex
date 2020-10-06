@@ -28,7 +28,7 @@ exports.login = async (req, res, next) => {
   // Select data from db and compare the password
   try {
     const userData = await pool.query(
-      "SELECT password FROM cebete.users WHERE user_id = $1",
+      "SELECT password FROM users WHERE user_id = $1",
       [userId]
     );
 
