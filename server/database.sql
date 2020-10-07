@@ -86,7 +86,6 @@ CREATE TABLE costumers (
   user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
-<<<<<<< HEAD
 );
 
 CREATE TABLE provinces (
@@ -106,6 +105,25 @@ CREATE TABLE urbans (
   sub_district VARCHAR(50),
   postal_code VARCHAR(10),
   city_id SMALLINT REFERENCES cities(city_id) ON UPDATE CASCADE ON DELETE RESTRICT
-=======
->>>>>>> parent of 28b208e... :rocket: feat: Create database urbans, cities, and provinces
 );
+
+INSERT INTO provinces(province_id,province)
+VALUES (-1, 'unknown');
+
+INSERT INTO cities(city_id,city,province_id)
+VALUES (-1, 'unknown', -1);
+
+COPY provinces(province_id,province)
+FROM '/root/databases/provinces.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY cities(city_id,city,province_id)
+FROM '/root/databases/cities.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY urbans(id,urban,sub_district,postal_code,city_id)
+FROM '/root/databases/urbans.csv'
+DELIMITER ','
+CSV HEADER;
