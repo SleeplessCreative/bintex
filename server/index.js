@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const invoiceRoutes = require("./routes/invoice");
 const authRoutes = require("./routes/authentication");
+const costRoutes = require("./controllers/deliveryCost");
 
 const PORT = process.env.PORT || 8000;
 
@@ -20,6 +21,8 @@ app.get("/", (req, res, next) => {
 app.use("/api/auth", authRoutes);
 
 app.use("/api/invoice", invoiceRoutes);
+
+app.use("/api/delivery", costRoutes);
 
 // Errors middleware
 app.use((error, req, res, next) => {
