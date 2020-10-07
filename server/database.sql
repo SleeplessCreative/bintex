@@ -86,6 +86,7 @@ CREATE TABLE costumers (
   user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
+<<<<<<< HEAD
 );
 
 CREATE TABLE provinces (
@@ -102,6 +103,9 @@ CREATE TABLE cities (
 CREATE TABLE urbans (
   id SERIAL PRIMARY KEY,
   urban VARCHAR(50),
+  sub_district VARCHAR(50),
   postal_code VARCHAR(10),
   city_id SMALLINT REFERENCES cities(city_id) ON UPDATE CASCADE ON DELETE RESTRICT
+=======
+>>>>>>> parent of 28b208e... :rocket: feat: Create database urbans, cities, and provinces
 );
