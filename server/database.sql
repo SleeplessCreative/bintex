@@ -87,3 +87,21 @@ CREATE TABLE costumers (
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
 );
+
+CREATE TABLE provinces (
+  province_id SMALLINT PRIMARY KEY,
+  province VARCHAR(50)
+);
+
+CREATE TABLE cities (
+  city_id SMALLINT PRIMARY KEY,
+  city VARCHAR(50),
+  province_id SMALLINT REFERENCES provinces(province_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE urbans (
+  id SERIAL PRIMARY KEY,
+  urban VARCHAR(50),
+  postal_code VARCHAR(10),
+  city_id SMALLINT REFERENCES cities(city_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
