@@ -24,7 +24,7 @@ const Resi = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     await axios
-      .post('http://localhost:8000/api/invoice/get-receipts', {
+      .post('http://api.bintex.id/api/invoice/get-receipts', {
         receipt: noResi.receipt
       })
       .then(res => {
