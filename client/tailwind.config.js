@@ -13,7 +13,8 @@ module.exports = {
         },
         accent: {
           light: '#D8C7FF',
-          dark: '#B99AFF'
+          default: '#B99AFF',
+          dark: '#5D54A4'
         }
       }
     }
