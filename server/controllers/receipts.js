@@ -54,7 +54,7 @@ exports.getReceipts = async (req, res, next) => {
       receiptData = searchReceiptQuery.rows[0];
       console.log(receiptData);
       return res.status(201).json({
-        shipmentDate: {
+        shipmentData: {
           receiptNumber: receiptData.receipt_number,
           origin: receiptData.origin,
           destination: receiptData.destination,
