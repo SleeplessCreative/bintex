@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/receipts", receiptsController.createReceipt);
 
-router.get("/receipts", receiptsController.getReceipts);
+router.post("/get-receipts", receiptsController.getReceipts);
 
 router.put("/receipts", receiptsController.updateReceipts);
 
