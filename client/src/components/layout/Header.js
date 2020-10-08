@@ -7,10 +7,7 @@ const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   console.log(navbarOpen);
   return (
-    <header className="flex items-center justify-between flex-wrap bg-accent-light py-6 px-12">
-      <div className="pr-8">
-        <LogoIcon />
-      </div>
+    <header className="flex items-center justify-between flex-wrap bg-accent-light py-6 px-32">
       <div className="block lg:hidden transform">
         <button
           className="flex items-center px-3 py-2 border rounded text-black-200 border-purple-400 hover:text-black hover:border-black"
@@ -43,25 +40,25 @@ const Header = () => {
             className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
             href="#"
           >
-            ---
+            Blog
           </AnchorLink>
           <AnchorLink
             className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
             href="#"
           >
-            We're
+            Cek Resi
           </AnchorLink>
           <AnchorLink
             className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
             href="#"
           >
-            Building
+            Cek Ongkir
           </AnchorLink>
           <AnchorLink
             className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
             href="#"
           >
-            Something!
+            Contact
           </AnchorLink>
         </div>
         <div className="md:block">
