@@ -9,50 +9,67 @@ const error = require("../error");
  * @param {*} next send error if something went wrong
  */
 
-// exports.registerAdmin = async (req, res, next) => {
-//     // Parse request data
-//     const userId = req.body.userId;
-//     const password = req.body.password;
-//     const name = req.body.name;
-//     const email = req.body.email;
-//     const role = "admin";
-
-//     // Insert admin data
-//     try {
-//       // Encrypt password
-//       const hashedPass = await bcrypt.hash(password, 10);
-
-//       const insertQuery = await pool.query(
-//         `INSERT INTO cebete.users (user_id, password, name, email, role)
-//         VALUES ('${userId}', '${hashedPass}', '${name}', '${email}', '${role}')
-//         RETURNING user_id`
-//       );
-
-//       const inserted =
-//         (await insertQuery.rows[0].user_id) == userId ? true : false;
-
-//       if (inserted) {
-//         return res.status(201).json("Inserted.");
-//       } else {
-//         errorFunc(406, "Data not inserted!");
-//       }
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
-
-exports.registerCostumer = async (req, res, next) => {
+exports.register = async (req, res, next) => {
   // Parse request data
   const userId = req.body.userId;
   const password = req.body.password;
   const email = req.body.email;
-  const role = "COSTUMER";
+  let role = req.body.role;
 
   const name = req.body.name;
   const profilePicture = userId + ".jpg";
+  const address = req.body.address;
 
-  // Insert participant's data
+  // Database insert query
   try {
+    let insertRolesQueryString;
+
+    switch (role) {
+      case "CASHIER":
+        insertRolesQueryString = `INSERT INTO cashiers (user_id, name, profile_picture) 
+            VALUES ('${userId}', '${name}', '${profilePicture}')
+            RETURNING user_id`;
+        break;
+
+      case "COSTUMER SERVICE":
+        insertRolesQueryString = `INSERT INTO costumer_services (user_id, name, profile_picture) 
+            VALUES ('${userId}', '${name}', '${profilePicture}')
+            RETURNING user_id`;
+        break;
+
+      case "AGENT":
+        insertRolesQueryString = `INSERT INTO agents (user_id, name, profile_picture, address) 
+            VALUES ('${userId}', '${name}', '${profilePicture}', '${address}')
+            RETURNING user_id`;
+        break;
+
+      case "DROPPOINTER":
+        insertRolesQueryString = `INSERT INTO drop_pointers (user_id, name, profile_picture, address) 
+            VALUES ('${userId}', '${name}', '${profilePicture}', '${address}')
+            RETURNING user_id`;
+        break;
+
+      case "DRIVER":
+        insertRolesQueryString = `INSERT INTO drivers (user_id, name, profile_picture) 
+            VALUES ('${userId}', '${name}', '${profilePicture}')
+            RETURNING user_id`;
+        break;
+
+      case "COURIER":
+        insertRolesQueryString = `INSERT INTO couriers (user_id, name, profile_picture) 
+            VALUES ('${userId}', '${name}', '${profilePicture}')
+            RETURNING user_id`;
+        break;
+
+      default:
+        insertRolesQueryString = `INSERT INTO costumers (user_id, name, profile_picture) 
+            VALUES ('${userId}', '${name}', '${profilePicture}')
+            RETURNING user_id`;
+
+        role = "COSTUMER";
+        break;
+    }
+
     // Encrypt password
     const hashedPass = await bcrypt.hash(password, 10);
 
@@ -62,15 +79,11 @@ exports.registerCostumer = async (req, res, next) => {
         RETURNING user_id`
     );
 
-    const insertCostumersQuery = await pool.query(
-      `INSERT INTO costumers (user_id, name,  profile_picture) 
-          VALUES ('${userId}', '${name}', '${profilePicture}')
-          RETURNING user_id`
-    );
+    const insertRolesQuery = await pool.query(insertRolesQueryString);
 
     const inserted =
       ((await insertUsersQuery.rows[0].user_id) &&
-        (await insertCostumersQuery.rows[0].user_id)) == userId
+        (await insertRolesQuery.rows[0].user_id)) == userId
         ? true
         : false;
 
