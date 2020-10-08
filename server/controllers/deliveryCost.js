@@ -1,4 +1,3 @@
-const axios = require("axios");
 const request = require("request");
 
 const dotenv = require("dotenv");
