@@ -15,3 +15,7 @@ h1 {
   @apply text-primary-dark;
   @apply font-display;
 }
+
+p {
+  @apply text-accent-dark;
+}
