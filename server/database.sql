@@ -39,51 +39,51 @@ INSERT INTO users(user_id, email, password, role)
     );
 
 CREATE TABLE administrators (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE cashiers (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE agents (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL,
   address VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE costumer_services (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE drop_pointers (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL,
   address VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE drivers (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE couriers (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE costumers (
-  user_id VARCHAR(9) REFERENCES users(user_id) PRIMARY KEY,
+  user_id VARCHAR(9) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE RESTRICT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   profile_picture VARCHAR(15) NOT NULL
 );
@@ -114,16 +114,16 @@ INSERT INTO cities(city_id,city,province_id)
 VALUES (-1, 'unknown', -1);
 
 COPY provinces(province_id,province)
-FROM '/root/databases/provinces.csv'
+FROM '/tmp/databases/provinces.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY cities(city_id,city,province_id)
-FROM '/root/databases/cities.csv'
+FROM '/tmp/databases/cities.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY urbans(id,urban,sub_district,postal_code,city_id)
-FROM '/root/databases/urbans.csv'
+FROM '/tmp/databases/urbans.csv'
 DELIMITER ','
 CSV HEADER;
