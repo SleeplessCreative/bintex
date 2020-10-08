@@ -7,7 +7,10 @@ const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   console.log(navbarOpen);
   return (
-    <header className="flex items-center justify-between flex-wrap bg-accent-light py-6 px-32">
+    <header className="flex items-center justify-between flex-wrap bg-accent-light py-6 px-8 sm:px-10 md:px-16 lg:px-32">
+      <div class="w-8 sm:w-8 md:w-8 lg:w-10">
+        <LogoIcon />
+      </div>
       <div className="block lg:hidden transform">
         <button
           className="flex items-center px-3 py-2 border rounded text-black-200 border-purple-400 hover:text-black hover:border-black"
@@ -30,34 +33,19 @@ const Header = () => {
         `}
       >
         <div className="text-lg lg:flex-grow">
-          <AnchorLink
-            className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
-            href="#"
-          >
+          <AnchorLink className="block px-6 mt-4 lg:inline-block lg:mt-0 font-semibold" href="#">
             Home
           </AnchorLink>
-          <AnchorLink
-            className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
-            href="#"
-          >
+          <AnchorLink className="block px-6 mt-4 lg:inline-block lg:mt-0 font-semibold" href="#">
             Blog
           </AnchorLink>
-          <AnchorLink
-            className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
-            href="#"
-          >
+          <AnchorLink className="block px-6 mt-4 lg:inline-block lg:mt-0 font-semibold" href="#">
             Cek Resi
           </AnchorLink>
-          <AnchorLink
-            className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
-            href="#"
-          >
+          <AnchorLink className="block px-6 mt-4 lg:inline-block lg:mt-0 font-semibold" href="#">
             Cek Ongkir
           </AnchorLink>
-          <AnchorLink
-            className="block px-6 mt-4 lg:inline-block lg:mt-0 mr-4 font-semibold"
-            href="#"
-          >
+          <AnchorLink className="block px-6 mt-4 lg:inline-block lg:mt-0 font-semibold" href="#">
             Contact
           </AnchorLink>
         </div>
