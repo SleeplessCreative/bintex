@@ -127,3 +127,11 @@ COPY urbans(id,urban,sub_district,postal_code,city_id)
 FROM '/tmp/databases/urbans.csv'
 DELIMITER ','
 CSV HEADER;
+
+CREATE TYPE status_t as enum(
+  'DELIVERING',
+  'DELIVERED'
+);
+
+ALTER TABLE receipts 
+ADD COLUMN status VARCHAR(10);

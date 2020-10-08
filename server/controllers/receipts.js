@@ -59,6 +59,7 @@ exports.getReceipts = async (req, res, next) => {
           origin: receiptData.origin,
           destination: receiptData.destination,
           shipmentDate: receiptData.shipment_date,
+          status: receiptData.status,
           consignee: receiptData.consignee,
           shipper: receiptData.shipper,
           dropPoint: receiptData.drop_point,
