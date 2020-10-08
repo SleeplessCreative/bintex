@@ -65,20 +65,20 @@ const Home = ({ children }) => {
           </form>
         </div>
       </section>
-      <section id="cekresi" className="py-20 lg:py-40 bg-primary-light">
+      <section id="cekongkir" className="py-20 lg:py-40 bg-white">
         <h1 className="text-4xl text-center">
           Cek Ongkir
         </h1>  
-        <div class="leading-loose">
-          <form class="max-w-xl m-4 p-10 bg-white">
-            <div class="mt-2">
-              <input class="w-full px-5 py-3 text-gray-700 bg-primary-light" id="cus_name" name="cus_name" type="text" required="" placeholder="Asal" aria-label=""/>
+        <div className="leading-loose">
+          <form className="max-w-xl m-4 p-10 bg-white">
+            <div className="mt-2">
+              <input className="w-full px-5 py-3 text-gray-700 bg-primary-light" id="cus_name" name="cus_name" type="text" required="" placeholder="Asal" aria-label=""/>
             </div>
-            <div class="mt-2">
-              <input class="w-full px-5 py-3 text-gray-700 bg-primary-light" id="cus_name" name="cus_name" type="text" required="" placeholder="Tujuan" aria-label="" />
+            <div className="mt-2">
+              <input className="w-full px-5 py-3 text-gray-700 bg-primary-light" id="cus_name" name="cus_name" type="text" required="" placeholder="Tujuan" aria-label="" />
             </div>
-            <div class="mt-2">
-              <input class="w-full px-5 py-3 text-gray-700 bg-primary-light" id="cus_name" name="cus_name" type="text" required="" placeholder="Berat (Kg)" aria-label="" />
+            <div className="mt-2">
+              <input className="w-full px-5 py-3 text-gray-700 bg-primary-light" id="cus_name" name="cus_name" type="text" required="" placeholder="Berat (Kg)" aria-label="" />
             </div>
             <Button className="mt-2" size="lg">Cek Ongkir</Button>
           </form>

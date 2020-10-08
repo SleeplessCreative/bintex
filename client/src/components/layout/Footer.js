@@ -3,7 +3,7 @@ import LogoIcon from '../../svg/LogoIcon';
 import Phone from '../../svg/Phone';
 
 const Footer = () => (
-  <footer className="px-32 py-6">
+  <footer className="px-32 py-6 bg-accent-dark text-primary-light">
     <div className="flex flex-warp justify-center">
       <div className="w-full lg:w-1/3">
         <h2 className="text-lg font-semibold">BINTEX (c) 2020</h2>
