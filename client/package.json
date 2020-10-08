@@ -10,6 +10,7 @@
     "build:css": "tailwind build src/css/tailwind.css -o src/css/style.css"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "gatsby": "^2.18.18",
     "gatsby-plugin-react-helmet": "^3.3.12",
     "gatsby-plugin-react-svg": "^3.0.0",
