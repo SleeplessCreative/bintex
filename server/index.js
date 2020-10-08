@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const invoiceRoutes = require("./routes/invoice");
 const authRoutes = require("./routes/authentication");
-const costRoutes = require("./routes/deliveryCost");
+const costRoutes = require("./controllers/deliveryCost");
 
 const PORT = process.env.PORT || 8000;
 
