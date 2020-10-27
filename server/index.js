@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
+const db = require("./models");
+
 const invoiceRoutes = require("./routes/invoice");
 const authRoutes = require("./routes/authentication");
 const costRoutes = require("./routes/deliveryCost");
@@ -33,6 +35,15 @@ app.use((error, req, res, next) => {
 
   res.status(status).json({ message: message, data: data });
 });
+
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("success");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
