@@ -135,3 +135,13 @@ CREATE TYPE status_t as enum(
 
 ALTER TABLE receipts 
 ADD COLUMN status VARCHAR(10);
+
+COPY provinces(provinceId,province)
+FROM '/home/tasteless/sleepless/bintex-assets/provinces.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY cities(city_id,city,province_id)
+FROM '/home/tasteless/sleepless/bintex-assets/cities.csv'
+DELIMITER ','
+CSV HEADER;
