@@ -1,4 +1,4 @@
-const { pool } = require("../db/dev/pool");
+const { pool } = require("../../db/dev/pool");
 
 /**
  *

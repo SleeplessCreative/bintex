@@ -1,4 +1,3 @@
-const axios = require("axios");
 const request = require("request");
 
 const dotenv = require("dotenv");
@@ -22,9 +21,11 @@ exports.getCityId = async (req, res, next) => {
 };
 
 exports.getCost = async (req, res, next) => {
-  originId = req.body.originId;
-  destinationId = req.body.destinationId;
+  originId = req.body.origin;
+  destinationId = req.body.destination;
   weight = req.body.weight;
+
+  console.log(originId, destinationId);
 
   const options = {
     method: "POST",
@@ -43,6 +44,7 @@ exports.getCost = async (req, res, next) => {
 
   try {
     await request(options, function (error, response, body) {
+      console.log(body);
       return res.status(201).send(body);
     });
   } catch (error) {
