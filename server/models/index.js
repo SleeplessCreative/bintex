@@ -24,19 +24,9 @@ db.receipts.belongsTo(db.invoices, {
   as: "invoices",
 });
 
-db.provinces.hasMany(db.cities, {
-  as: "cities",
-});
 db.cities.belongsTo(db.provinces, {
-  foreignKey: "provinceId",
+  foreignKey: "province_id",
   as: "provinces",
-});
-db.cities.hasMany(db.urbans, {
-  as: "urbans",
-});
-db.urbans.belongsTo(db.cities, {
-  foreignKey: "cityId",
-  as: "cities",
 });
 
 module.exports = db;
