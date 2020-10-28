@@ -7,7 +7,7 @@ const Ongkir = () => {
   const [data, setData] = useState({
     origin: '',
     destination: '',
-    weight: '1'
+    weight: ''
   });
 
   const [cost, setCost] = useState({
@@ -21,13 +21,13 @@ const Ongkir = () => {
     e.preventDefault();
     console.log('test', data.origin, data.destination, data.weight);
     await axios
-      .get('http://localhost:5000/api/delivery/cost', {
+      .post('https://staging.bintex.id/api/delivery/cost', {
         origin: data.origin,
         destination: data.destination,
         weight: data.weight
       })
       .then(res => {
-        const data = res.value;
+        const data = res.data.value;
         console.log(data);
         setCost({
           requested: true,
@@ -38,7 +38,7 @@ const Ongkir = () => {
       .catch(err => {
         console.log(err);
       });
-    console.log('ahaha', cost.requested);
+    // console.log('ahaha', cost.requested);
   };
 
   console.log('ahaha', cost.requested);
@@ -88,6 +88,7 @@ const Ongkir = () => {
           <Button className="mt-2 w-full" size="lg" func={handleSubmit}>
             Cek Ongkir
           </Button>
+          {cost.requested ? <div>{cost.cost}</div> : <div>kosong</div>}
         </form>
       </div>
     </section>
