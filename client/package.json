@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "gatsby": "^2.18.18",
+    "gatsby": "^2.24.90",
     "gatsby-cli": "^2.12.113",
     "gatsby-plugin-react-helmet": "^3.3.12",
     "gatsby-plugin-react-svg": "^3.0.0",
