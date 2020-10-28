@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get("/city", costController.getCityId);
 
-router.get("/cost", costController.getCost);
+router.post("/cost", costController.getCost);
 
 module.exports = router;
