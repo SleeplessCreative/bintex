@@ -26,8 +26,8 @@ exports.getCityId = async (req, res, next) => {
 };
 
 exports.getCost = async (req, res, next) => {
-  const origin = req.body.origin;
-  const destination = req.body.destination;
+  let origin = req.body.origin;
+  let destination = req.body.destination;
   const weight = req.body.weight;
 
   origin = origin.replace(/(^\w{1})|(\s{1}\w{1})/g, (match) =>
@@ -70,12 +70,13 @@ exports.getCost = async (req, res, next) => {
     }
 
     if (destinationIdQuery) {
-      destinationId = destinationIdQuery.city_id;
+      destinationId = destinationIdQuery[0].city_id;
     } else {
       error.errorFunc(404, "Destination not found");
     }
 
     // console.log(originIdQuery, destinationIdQuery);
+    console.log(originId, destinationId);
 
     const options = {
       method: "POST",
@@ -92,7 +93,7 @@ exports.getCost = async (req, res, next) => {
       },
     };
     await request(options, function (error, response, body) {
-      // console.log(JSON.parse(body));
+      console.log(JSON.parse(body));
       const ongkir = JSON.parse(body).rajaongkir.results[0].costs[1].cost[0];
       // console.log(ongkir);
       return res.status(200).json(ongkir);
