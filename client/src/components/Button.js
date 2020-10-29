@@ -6,7 +6,7 @@ const sizes = {
   xl: `py-5 px-16 text-lg`
 };
 
-const Button = ({ children, className = '', size }) => {
+const Button = ({ children, className = '', size, func }) => {
   return (
     <button
       type="button"
@@ -17,6 +17,7 @@ const Button = ({ children, className = '', size }) => {
         hover:bg-primary-dark
         text-primary-light
     `}
+      onClick={func}
     >
       {children}
     </button>
