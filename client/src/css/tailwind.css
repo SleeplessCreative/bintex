@@ -4,13 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-a {
-  @apply text-primary;
-}
-a:hover {
-  @apply text-primary-dark;
-}
-
 h1 {
   @apply text-primary-dark;
   @apply font-display;

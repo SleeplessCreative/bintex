@@ -45,10 +45,10 @@ const Ongkir = () => {
   console.log(data.origin, data.destination, data.weight);
 
   return (
-    <section id="cekongkir" className="py-20 lg:py-40 bg-white">
+    <section id="cekongkir" className="py-20 bg-white lg:py-40">
       <h1 className="text-4xl text-center">Cek Ongkir</h1>
       <div className="leading-loose">
-        <form className="max-w-xl m-4 p-10 bg-white m-auto">
+        <form className="max-w-xl p-10 m-auto bg-white">
           <div className="mt-2">
             <input
               className="w-full px-5 py-3 text-gray-700 bg-primary-light"
@@ -85,7 +85,7 @@ const Ongkir = () => {
               onChange={e => setData({ ...data, weight: e.target.value })}
             />
           </div>
-          <Button className="mt-2 w-full" size="lg" func={handleSubmit}>
+          <Button className="w-full mt-2" size="lg" func={handleSubmit}>
             Cek Ongkir
           </Button>
           {cost.requested ? <div>{cost.cost}</div> : <div>kosong</div>}

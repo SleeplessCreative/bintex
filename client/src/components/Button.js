@@ -13,8 +13,8 @@ const Button = ({ children, className = '', size, func }) => {
       className={`
         ${sizes[size] || sizes.default}
         ${className}
-        bg-primary
-        hover:bg-primary-dark
+        bg-accent
+        hover:bg-accent-dark
         text-primary-light
     `}
       onClick={func}

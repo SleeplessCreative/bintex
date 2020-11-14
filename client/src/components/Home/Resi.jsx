@@ -60,9 +60,9 @@ const Resi = () => {
     <>
       <section id="cekresi" className="py-20 lg:py-40 bg-primary-light">
         <h1 className="text-4xl text-center">Cek Resi</h1>
-        <div class="leading-loose content-center bg-primary-light">
-          <form method="POST" className="text-center m-auto items-center content-center">
-            <div className="flex container items-center content-center justify-center p-8 bg-primary-light m-auto">
+        <div className="content-center leading-loose bg-primary-light">
+          <form method="POST" className="items-center content-center m-auto text-center">
+            <div className="container flex items-center content-center justify-center p-8 m-auto bg-primary-light">
               <input
                 type="search"
                 name="search"
@@ -70,7 +70,7 @@ const Resi = () => {
                 className="p-2"
                 onChange={e => setNoResi({ ...noResi, receipt: e.target.value })}
               />
-              <button type="submit" className="items-center p-1 w-12" onClick={handleSubmit}>
+              <button type="submit" className="items-center w-12 p-1" onClick={handleSubmit}>
                 <Search />
               </button>
             </div>
@@ -79,7 +79,7 @@ const Resi = () => {
         {resi.receipt ? (
           <div>
             <Tracking resi={resi} />
-            <div className="bg-accent-light w-full text-center mt-10">
+            <div className="w-full mt-10 text-center bg-accent-light">
               <button className="w-16" type="submit" onClick={handleHideSubmit}>
                 <Arrow />
               </button>

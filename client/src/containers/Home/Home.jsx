@@ -16,9 +16,9 @@ const Home = ({ children }) => {
       <div className="application">
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Bintex</title>
+          <title>Bintang Express Indonesia</title>
           <html lang={'en'} />
-          <meta name="description" content={'Coming soon!'} />
+          <meta name="description" content="Jasa pengiriman paket baru buat kamu generasi baru." />
           <link rel="icon" href={LogoIcon}></link>
           <meta name="theme-color" content="#D8C7FF" />
         </Helmet>
