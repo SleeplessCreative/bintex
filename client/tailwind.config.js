@@ -15,6 +15,9 @@ module.exports = {
           light: '#D8C7FF',
           default: '#B99AFF',
           dark: '#5D54A4'
+        },
+        fontSize: {
+          '7xl': '5rem',
         }
       }
     }
