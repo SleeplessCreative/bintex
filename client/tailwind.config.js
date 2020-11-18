@@ -5,6 +5,12 @@ module.exports = {
       body: ['Open Sans']
     },
     extend: {
+      screens: {
+        xxl: '1600px'
+      },
+      fontSize: {
+        '7xl': '5rem'
+      },
       colors: {
         primary: {
           light: '#F4F7FF',
@@ -15,9 +21,6 @@ module.exports = {
           light: '#D8C7FF',
           default: '#B99AFF',
           dark: '#5D54A4'
-        },
-        fontSize: {
-          '7xl': '5rem',
         }
       }
     }
@@ -25,7 +28,7 @@ module.exports = {
   variants: {
     boxSizing: ['responsive', 'hover', 'focus'],
     appearance: ['responsive'],
-    backgroundColor: ['responsive', 'hover', 'focus'],
+    backgroundColor: ['responsive', 'hover', 'focus']
   },
   plugins: []
 };

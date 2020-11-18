@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 import LogoIcon from '../../svg/LogoIcon';
 import Burger from '../../svg/Burger';
-import Button from '../Button';
+import NavLinks from '../layout/NavLinks';
 import tw from 'twin.macro';
 
-const Anchor = tw.a` 
-  block px-6 mt-4 font-semibold lg:inline-block lg:mt-0
-`;
+const Anchor = tw.div``;
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -19,44 +16,22 @@ const Header = () => {
           <div className="w-10 lg:w-12">
             <LogoIcon />
           </div>
-          <div className="lg:hidden">
-            <button
-              className="w-6 h-6 text-primary-dark"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              <Burger />
-            </button>
-          </div>
-          <nav className="hidden lg:block">
-            <div className="flex items-center">
-              <Anchor href="#">Home</Anchor>
-              <AnchorLink
-                className="block px-6 mt-4 font-semibold lg:inline-block lg:mt-0"
-                href="#blog"
-              >
-                Blog
-              </AnchorLink>
-              <AnchorLink
-                className="block px-6 mt-4 font-semibold lg:inline-block lg:mt-0"
-                href="#cekresi"
-              >
-                Cek Resi
-              </AnchorLink>
-              <AnchorLink
-                className="block px-6 mt-4 font-semibold lg:inline-block lg:mt-0"
-                href="#cekongkir"
-              >
-                Cek Ongkir
-              </AnchorLink>
-              <AnchorLink
-                className="block px-6 mt-4 font-semibold lg:inline-block lg:mt-0"
-                href="#footer"
-              >
-                Contact
-              </AnchorLink>
-              <Button size="lg">Login</Button>
-            </div>
-          </nav>
+          <button
+            className="w-8 text-primary-dark lg:hidden"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
+            <Burger />
+          </button>
+          {console.log(navbarOpen)}
+          {navbarOpen ? (
+            <nav className="flex flex-col items-center justify-center w-full h-screen justify-items-center">
+              <NavLinks></NavLinks>
+            </nav>
+          ) : (
+            <nav className="items-center hidden lg:flex">
+              <NavLinks></NavLinks>
+            </nav>
+          )}
         </div>
       </div>
     </header>

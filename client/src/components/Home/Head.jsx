@@ -5,7 +5,7 @@ import HeroIllustration from '../../svg/HeroIllustration';
 
 const Head = () => {
   return (
-    <section id="head" className="z-0 h-auto py-40 xl:h-screen max-w-screen bg-accent-light">
+    <section id="head" className="z-0 h-auto py-40 xl:h-screen max-w-screen bg-accent-light xxl:h-auto">
       <div className="container px-4 m-auto sm:px-8 lg:px-16 xl:px-20">
         <div className="grid items-center grid-cols-1 gap-8 md:grid-cols-12">
           <div className="col-span-6 px-6 text-center md:px-0 md:text-left">
