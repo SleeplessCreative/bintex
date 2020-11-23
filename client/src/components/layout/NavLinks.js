@@ -12,7 +12,6 @@ const NavLinks = () => {
     navigate('/login/');
   };
 
-  const login = '/login/';
   return (
     <>
       <Anchor>
