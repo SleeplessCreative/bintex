@@ -7,6 +7,12 @@ import { navigate } from 'gatsby';
 const Anchor = tw.div`block px-6 mt-4 font-semibold lg:inline-block lg:mt-0 text-primary-dark`;
 
 const NavLinks = () => {
+  const nav = () => {
+    console.log('masuk');
+    navigate('/login/');
+  };
+
+  const login = '/login/';
   return (
     <>
       <Anchor>
@@ -24,9 +30,9 @@ const NavLinks = () => {
       <Anchor>
         <AnchorLink href="#footer">Contact</AnchorLink>
       </Anchor>
-      <Button size="lg" onClick={
-      navigate("/login/")
-    }>Login</Button>
+      <Button size="lg" func={nav}>
+        Login
+      </Button>
     </>
   );
 };

@@ -17,7 +17,6 @@ const Button = ({ children, className = '', size, func }) => {
         hover:bg-accent-dark
         text-primary-light
     `}
-      href={`#`}
       onClick={func}
     >
       {children}
