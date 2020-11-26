@@ -2,6 +2,11 @@ const bcrypt = require("bcrypt");
 const { pool } = require("../../db/dev/pool");
 const error = require("../error");
 
+const db = require("../../models");
+const { roles } = require("../../models");
+const Users = db.users;
+const Roles = db.roles;
+
 /**
  *
  * @param {*} req get request data from client
@@ -11,81 +16,71 @@ const error = require("../error");
 
 exports.register = async (req, res, next) => {
   // Parse request data
-  const userId = req.body.userId;
-  const password = req.body.password;
-  const email = req.body.email;
-  let role = req.body.role;
-
+  // const userId = req.body.userId;
   const name = req.body.name;
-  const profilePicture = userId + ".jpg";
-  const address = req.body.address;
+  const email = req.body.email;
+  const password = req.body.password;
+  let role = req.body.role;
+  let address = null;
+
+  // const name = req.body.name;
+  // const profilePicture = userId + ".jpg";
+  if (req.body.address) {
+    address = req.body.address;
+  }
 
   // Database insert query
   try {
+    const hashedPass = await bcrypt.hash(password, 10);
+    let insertUsersQueryString;
     let insertRolesQueryString;
 
-    switch (role) {
-      case "CASHIER":
-        insertRolesQueryString = `INSERT INTO cashiers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
+    const roleId = await Roles.findAll({
+      attributes: ["role_id"],
+      where: {
+        role_name: role,
+      },
+    });
 
-      case "COSTUMER SERVICE":
-        insertRolesQueryString = `INSERT INTO costumer_services (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
+    console.log(JSON.stringify(roleId));
 
-      case "AGENT":
-        insertRolesQueryString = `INSERT INTO agents (user_id, name, profile_picture, address) 
-            VALUES ('${userId}', '${name}', '${profilePicture}', '${address}')
-            RETURNING user_id`;
-        break;
+    if (address) {
+      insertUsersQueryString = await Users.create({
+        name: name,
+        email: email,
+        password_hash: hashedPass,
+        address: address,
+      });
 
-      case "DROPPOINTER":
-        insertRolesQueryString = `INSERT INTO drop_pointers (user_id, name, profile_picture, address) 
-            VALUES ('${userId}', '${name}', '${profilePicture}', '${address}')
-            RETURNING user_id`;
-        break;
-
-      case "DRIVER":
-        insertRolesQueryString = `INSERT INTO drivers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
-
-      case "COURIER":
-        insertRolesQueryString = `INSERT INTO couriers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
-
-      default:
-        insertRolesQueryString = `INSERT INTO costumers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-
-        role = "COSTUMER";
-        break;
+      // insertRolesQueryString = await db["users_in_roles"].create({
+      //   UserId:
+      // });
+    } else {
+      insertUsersQueryString = await Users.create({
+        name: name,
+        email: email,
+        password_hash: hashedPass,
+      });
+      console.log(insertUsersQueryString.toJSON());
     }
 
     // Encrypt password
-    const hashedPass = await bcrypt.hash(password, 10);
 
-    const insertUsersQuery = await pool.query(
-      `INSERT INTO users (user_id, password,  email, role) 
-        VALUES ('${userId}', '${hashedPass}', '${email}', '${role}')
-        RETURNING user_id`
-    );
+    // const insertUsersQuery = await pool.query(
+    //   `INSERT INTO users (user_id, password,  email, role)
+    //     VALUES ('${userId}', '${hashedPass}', '${email}', '${role}')
+    //     RETURNING user_id`
+    // );
 
-    const insertRolesQuery = await pool.query(insertRolesQueryString);
+    // const insertRolesQuery = await pool.query(insertRolesQueryString);
 
-    const inserted =
-      ((await insertUsersQuery.rows[0].user_id) &&
-        (await insertRolesQuery.rows[0].user_id)) == userId
-        ? true
-        : false;
+    // const inserted =
+    //   ((await insertUsersQuery.rows[0].user_id) &&
+    //     (await insertRolesQuery.rows[0].user_id)) == userId
+    //     ? true
+    //     : false;
+
+    const inserted = (await insertUsersQueryString) ? true : false;
 
     if (inserted) {
       return res.status(201).json("Inserted.");
