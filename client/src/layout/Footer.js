@@ -1,6 +1,4 @@
 import React from 'react';
-import LogoIcon from '../../svg/LogoIcon';
-import Phone from '../../svg/Phone';
 
 const Footer = () => (
   <footer id="footer" className="px-32 py-6 bg-accent-dark text-primary-light">

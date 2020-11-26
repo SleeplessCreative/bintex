@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import LogoIcon from '../../svg/LogoIcon';
-import Burger from '../../svg/Burger';
-import NavLinks from '../layout/NavLinks';
+import LogoIcon from '../svg/LogoIcon';
+import Burger from '../svg/Burger';
+import NavLinks from './NavLinks';
 import tw from 'twin.macro';
 
 const Anchor = tw.div``;

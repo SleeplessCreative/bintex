@@ -1,6 +1,6 @@
 import React from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import Button from '../Button';
+import Button from '../components/Button';
 import tw from 'twin.macro';
 import { navigate } from 'gatsby';
 
