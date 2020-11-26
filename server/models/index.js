@@ -15,6 +15,9 @@ db.provinces = require("./cost/provinces")(sequelize, Sequelize);
 db.cities = require("./cost/cities")(sequelize, Sequelize);
 db.urbans = require("./cost/urbans")(sequelize, Sequelize);
 
+db.users = require("./authentication/users")(sequelize, Sequelize);
+db.roles = require("./authentication/role")(sequelize, Sequelize);
+
 db.invoices.hasOne(db.receipts, {
   foreignKey: "receiptNumber",
   as: "receipts",
@@ -27,6 +30,20 @@ db.receipts.belongsTo(db.invoices, {
 db.cities.belongsTo(db.provinces, {
   foreignKey: "province_id",
   as: "provinces",
+});
+
+db.users.belongsToMany(db.roles, {
+  through: "users_in_roles",
+  onDelete: "CASCADE",
+  foreignKey: "UserId",
+  timestamps: false,
+});
+
+db.roles.belongsToMany(db.users, {
+  through: "users_in_roles",
+  onDelete: "CASCADE",
+  foreignKey: "RoleId",
+  timestamps: false,
 });
 
 module.exports = db;
