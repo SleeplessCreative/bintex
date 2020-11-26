@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import Footer from '../../components/layout/Footer';
-import Header from '../../components/layout/Header';
+import Footer from '../../layout/Footer';
+import Header from '../../layout/Header';
 import Head from '../../components/Home/Head';
 import Blog from '../../components/Home/Blog';
 import Resi from '../../components/Home/Resi';
