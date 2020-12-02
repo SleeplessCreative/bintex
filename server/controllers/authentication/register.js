@@ -35,6 +35,7 @@ exports.register = async (req, res, next) => {
     let insertUsersQueryString;
     let insertRolesQueryString;
 
+<<<<<<< HEAD
     const roleId = await Roles.findAll({
       attributes: ["role_id"],
       where: {
@@ -81,6 +82,47 @@ exports.register = async (req, res, next) => {
     //     : false;
 
     const inserted = (await insertUsersQueryString) ? true : false;
+=======
+    const regUser = {};
+    regUser.name = name;
+    regUser.email = email;
+    regUser.password_hash = hashedPass;
+    if (address) {
+      regUser.address = address;
+    }
+
+    const roleIdQuery = await Roles.findAll({
+      attributes: ["role_id"],
+      where: {
+        role_name: role,
+      },
+    });
+
+    console.log(JSON.stringify(roleIdQuery));
+
+    const roleId = roleIdQuery[0].role_id;
+    console.log(roleId);
+
+    const objModel = db["users"].build(regUser);
+    objModel
+      .save()
+      .then((data) => {
+        console.log("ini data", data);
+        data["setRoles"](roleId)
+          .then((data2) => {
+            console.log("ini data2", data2);
+            console.log("roles are set");
+          })
+          .catch((err2) => {
+            console.log(err2);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    const inserted = (await objModel) ? true : false;
+>>>>>>> authentication
 
     if (inserted) {
       return res.status(201).json("Inserted.");
