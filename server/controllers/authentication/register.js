@@ -35,54 +35,6 @@ exports.register = async (req, res, next) => {
     let insertUsersQueryString;
     let insertRolesQueryString;
 
-<<<<<<< HEAD
-    const roleId = await Roles.findAll({
-      attributes: ["role_id"],
-      where: {
-        role_name: role,
-      },
-    });
-
-    console.log(JSON.stringify(roleId));
-
-    if (address) {
-      insertUsersQueryString = await Users.create({
-        name: name,
-        email: email,
-        password_hash: hashedPass,
-        address: address,
-      });
-
-      // insertRolesQueryString = await db["users_in_roles"].create({
-      //   UserId:
-      // });
-    } else {
-      insertUsersQueryString = await Users.create({
-        name: name,
-        email: email,
-        password_hash: hashedPass,
-      });
-      console.log(insertUsersQueryString.toJSON());
-    }
-
-    // Encrypt password
-
-    // const insertUsersQuery = await pool.query(
-    //   `INSERT INTO users (user_id, password,  email, role)
-    //     VALUES ('${userId}', '${hashedPass}', '${email}', '${role}')
-    //     RETURNING user_id`
-    // );
-
-    // const insertRolesQuery = await pool.query(insertRolesQueryString);
-
-    // const inserted =
-    //   ((await insertUsersQuery.rows[0].user_id) &&
-    //     (await insertRolesQuery.rows[0].user_id)) == userId
-    //     ? true
-    //     : false;
-
-    const inserted = (await insertUsersQueryString) ? true : false;
-=======
     const regUser = {};
     regUser.name = name;
     regUser.email = email;
@@ -122,7 +74,6 @@ exports.register = async (req, res, next) => {
       });
 
     const inserted = (await objModel) ? true : false;
->>>>>>> authentication
 
     if (inserted) {
       return res.status(201).json("Inserted.");
