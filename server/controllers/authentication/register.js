@@ -35,52 +35,45 @@ exports.register = async (req, res, next) => {
     let insertUsersQueryString;
     let insertRolesQueryString;
 
-    const roleId = await Roles.findAll({
+    const regUser = {};
+    regUser.name = name;
+    regUser.email = email;
+    regUser.password_hash = hashedPass;
+    if (address) {
+      regUser.address = address;
+    }
+
+    const roleIdQuery = await Roles.findAll({
       attributes: ["role_id"],
       where: {
         role_name: role,
       },
     });
 
-    console.log(JSON.stringify(roleId));
+    console.log(JSON.stringify(roleIdQuery));
 
-    if (address) {
-      insertUsersQueryString = await Users.create({
-        name: name,
-        email: email,
-        password_hash: hashedPass,
-        address: address,
+    const roleId = roleIdQuery[0].role_id;
+    console.log(roleId);
+
+    const objModel = db["users"].build(regUser);
+    objModel
+      .save()
+      .then((data) => {
+        console.log("ini data", data);
+        data["setRoles"](roleId)
+          .then((data2) => {
+            console.log("ini data2", data2);
+            console.log("roles are set");
+          })
+          .catch((err2) => {
+            console.log(err2);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
-      // insertRolesQueryString = await db["users_in_roles"].create({
-      //   UserId:
-      // });
-    } else {
-      insertUsersQueryString = await Users.create({
-        name: name,
-        email: email,
-        password_hash: hashedPass,
-      });
-      console.log(insertUsersQueryString.toJSON());
-    }
-
-    // Encrypt password
-
-    // const insertUsersQuery = await pool.query(
-    //   `INSERT INTO users (user_id, password,  email, role)
-    //     VALUES ('${userId}', '${hashedPass}', '${email}', '${role}')
-    //     RETURNING user_id`
-    // );
-
-    // const insertRolesQuery = await pool.query(insertRolesQueryString);
-
-    // const inserted =
-    //   ((await insertUsersQuery.rows[0].user_id) &&
-    //     (await insertRolesQuery.rows[0].user_id)) == userId
-    //     ? true
-    //     : false;
-
-    const inserted = (await insertUsersQueryString) ? true : false;
+    const inserted = (await objModel) ? true : false;
 
     if (inserted) {
       return res.status(201).json("Inserted.");
