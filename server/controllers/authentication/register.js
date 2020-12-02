@@ -24,68 +24,45 @@ exports.register = async (req, res, next) => {
   try {
     let insertRolesQueryString;
 
-    switch (role) {
-      case "CASHIER":
-        insertRolesQueryString = `INSERT INTO cashiers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
-
-      case "COSTUMER SERVICE":
-        insertRolesQueryString = `INSERT INTO costumer_services (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
-
-      case "AGENT":
-        insertRolesQueryString = `INSERT INTO agents (user_id, name, profile_picture, address) 
-            VALUES ('${userId}', '${name}', '${profilePicture}', '${address}')
-            RETURNING user_id`;
-        break;
-
-      case "DROPPOINTER":
-        insertRolesQueryString = `INSERT INTO drop_pointers (user_id, name, profile_picture, address) 
-            VALUES ('${userId}', '${name}', '${profilePicture}', '${address}')
-            RETURNING user_id`;
-        break;
-
-      case "DRIVER":
-        insertRolesQueryString = `INSERT INTO drivers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
-
-      case "COURIER":
-        insertRolesQueryString = `INSERT INTO couriers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-        break;
-
-      default:
-        insertRolesQueryString = `INSERT INTO costumers (user_id, name, profile_picture) 
-            VALUES ('${userId}', '${name}', '${profilePicture}')
-            RETURNING user_id`;
-
-        role = "COSTUMER";
-        break;
+    const regUser = {};
+    regUser.name = name;
+    regUser.email = email;
+    regUser.password_hash = hashedPass;
+    if (address) {
+      regUser.address = address;
     }
 
-    // Encrypt password
-    const hashedPass = await bcrypt.hash(password, 10);
+    const roleIdQuery = await Roles.findAll({
+      attributes: ["role_id"],
+      where: {
+        role_name: role,
+      },
+    });
 
-    const insertUsersQuery = await pool.query(
-      `INSERT INTO users (user_id, password,  email, role) 
-        VALUES ('${userId}', '${hashedPass}', '${email}', '${role}')
-        RETURNING user_id`
-    );
+    console.log(JSON.stringify(roleIdQuery));
 
-    const insertRolesQuery = await pool.query(insertRolesQueryString);
+    const roleId = roleIdQuery[0].role_id;
+    console.log(roleId);
 
-    const inserted =
-      ((await insertUsersQuery.rows[0].user_id) &&
-        (await insertRolesQuery.rows[0].user_id)) == userId
-        ? true
-        : false;
+    const objModel = db["users"].build(regUser);
+    objModel
+      .save()
+      .then((data) => {
+        console.log("ini data", data);
+        data["setRoles"](roleId)
+          .then((data2) => {
+            console.log("ini data2", data2);
+            console.log("roles are set");
+          })
+          .catch((err2) => {
+            console.log(err2);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    const inserted = (await objModel) ? true : false;
 
     if (inserted) {
       return res.status(201).json("Inserted.");
