@@ -1,27 +1,21 @@
 module.exports = (Sequelize, DataTypes) => {
-  const Users = Sequelize.define("users", {
-    user_id: {
+  const Agent = Sequelize.define("agent", {
+    agent_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       unique: true,
     },
-    name: {
+    district: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password_hash: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    profile_picture: DataTypes.STRING,
   });
 
-  return Users;
+  return Agent;
 };
