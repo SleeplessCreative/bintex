@@ -18,6 +18,8 @@ db.urbans = require("./cost/urbans")(sequelize, Sequelize);
 db.users = require("./authentication/users")(sequelize, Sequelize);
 db.roles = require("./authentication/role")(sequelize, Sequelize);
 
+db.agent = require("./agent/agent")(sequelize, Sequelize);
+
 db.invoices.hasOne(db.receipts, {
   foreignKey: "receiptNumber",
   as: "receipts",
@@ -44,6 +46,13 @@ db.roles.belongsToMany(db.users, {
   onDelete: "CASCADE",
   foreignKey: "RoleId",
   timestamps: false,
+});
+
+// db.users.belongsToMany(db.)
+
+db.agent.belongsTo(db.users, {
+  foreignKey: "user_id",
+  as: "user_agent",
 });
 
 module.exports = db;
