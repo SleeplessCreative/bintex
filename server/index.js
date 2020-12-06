@@ -7,6 +7,7 @@ const invoiceRoutes = require("./routes/invoice");
 const authRoutes = require("./routes/authentication");
 const costRoutes = require("./routes/deliveryCost");
 const agentRoutes = require("./routes/agent");
+const driverRoutes = require("./routes/driver");
 
 const PORT = process.env.PORT || 8000;
 
@@ -28,6 +29,8 @@ app.use("/api/invoice", invoiceRoutes);
 app.use("/api/delivery", costRoutes);
 
 app.use("/api/agent", agentRoutes);
+
+app.use("/api/driver", driverRoutes);
 
 // Errors middleware
 app.use((error, req, res, next) => {
