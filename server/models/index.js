@@ -19,6 +19,8 @@ db.users = require("./authentication/users")(sequelize, Sequelize);
 db.roles = require("./authentication/role")(sequelize, Sequelize);
 
 db.agent = require("./agent/agent")(sequelize, Sequelize);
+db.driver = require("./driver/driver")(sequelize, Sequelize);
+db.driverHistory = require("./driver/history")(sequelize, Sequelize);
 
 db.invoices.hasOne(db.receipts, {
   foreignKey: "receiptNumber",
@@ -50,9 +52,19 @@ db.roles.belongsToMany(db.users, {
 
 // db.users.belongsToMany(db.)
 
-db.agent.belongsTo(db.users, {
+db.users.hasOne(db.agent, {
   foreignKey: "user_id",
   as: "user_agent",
+});
+
+db.users.hasOne(db.agent, {
+  foreignKey: "user_id",
+  as: "user_driver",
+});
+
+db.driverHistory.belongsTo(db.driver, {
+  foreignKey: "driver_id",
+  as: "as_driver_id",
 });
 
 module.exports = db;
