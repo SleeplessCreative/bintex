@@ -15,6 +15,8 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    lat: DataTypes.STRING,
+    long: DataTypes.STRING,
   });
 
   return Agent;
