@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 
 const Blog = () => {
   return (
-    <section id="blog" className="py-20 lg:py-40 bg-primary-light">
+    <section id="blog" className="h-screen py-20 g:py-40 bg-accent">
       <div className="mx-6 md:flex md:mx-auto max-w-2lg md:max-w-4xl">
         <img
           className="object-cover w-full h-full md:w-6/12"
