@@ -4,7 +4,7 @@ import Button from '../components/Button';
 import tw from 'twin.macro';
 import { navigate } from 'gatsby';
 
-const Anchor = tw.div`block px-6 mt-4 font-semibold lg:inline-block lg:mt-0 text-primary-dark`;
+const Anchor = tw.div`block px-6 mt-5 font-semibold lg:inline-block lg:mt-0 text-primary-dark`;
 
 const NavLinks = () => {
   const nav = () => {
@@ -13,8 +13,8 @@ const NavLinks = () => {
   };
 
   return (
-    <>
-      <Anchor>
+    <nav className="flex flex-col items-center py-3 bg-white lg:flex-row">
+      <Anchor className="relative">
         <AnchorLink href="#head">Home</AnchorLink>
       </Anchor>
       <Anchor>
@@ -29,10 +29,10 @@ const NavLinks = () => {
       <Anchor>
         <AnchorLink href="#footer">Contact</AnchorLink>
       </Anchor>
-      <Button size="lg" func={nav}>
+      <Button className="relative my-6 lg:my-0 lg:ml-4" size="lg" func={nav}>
         Login
       </Button>
-    </>
+    </nav>
   );
 };
 
