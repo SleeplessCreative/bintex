@@ -4,27 +4,25 @@ import { Hero1, Hero2, Hero3 } from '../../svg/index';
 
 const Pad = `px-2 sm:px-6 lg:px-12 xl:px-16`;
 
-const Head = () => {
+const Head3 = () => {
   return (
     <>
-      <Header />
       <div
-        id="head"
-        className="relative z-0 flex h-auto bg-white md:h-screen max-w-screen md:-mt-20"
+        className="relative z-0 flex h-auto bg-white md:h-screen max-w-screen"
       >
         <div className={`container m-auto ${Pad}`}>
           <div className="grid items-center grid-cols-2 gap-7 md:grid-cols-12">
             <div className="col-span-4 px-6 text-center md:px-0 md:text-left">
               <div className="container max-w-sm py-12 mx-auto">
-                <h1 className="text-6xl font-bold leading-tight">Open Your World With Us.</h1>
+                <h1 className="text-6xl font-bold leading-tight">Tracking Your Shipments.</h1>
                 <hr className="w-12 h-1 mx-auto mt-8 bg-yellow-400 rounded-full md:mx-0" />
                 <p className="mt-6 text-2xl leading-tight text-primary-dark">
-                  Your new domestic cargo transporter is here!
+                  So you can sit and don't have to worry!
                 </p>
               </div>
             </div>
             <div className="col-span-8 pb-16 md:pb-0">
-              <Hero1 />
+              <Hero3 />
             </div>
           </div>
         </div>
@@ -40,4 +38,4 @@ const Head = () => {
   );
 };
 
-export default Head;
+export default Head3;

@@ -2,12 +2,12 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import Footer from '../../layout/Footer';
-import Header from '../../layout/Header';
 import Head from '../../components/Home/Head';
 import Blog from '../../components/Home/Blog';
 import Resi from '../../components/Home/Resi';
 import Ongkir from '../../components/Home/Ongkir';
-import Button from '../../components/Button';
+import Head2 from '../../components/Home/Head2';
+import Head3 from '../../components/Home/Head3';
 import LogoIcon from '../../ico/favicon.ico';
 
 const Home = ({ children }) => {
@@ -23,8 +23,9 @@ const Home = ({ children }) => {
           <meta name="theme-color" content="#D8C7FF" />
         </Helmet>
       </div>
-      <Header />
       <Head />
+      <Head2 />
+      <Head3 />
       <Blog />
       <Resi />
       <Ongkir />
