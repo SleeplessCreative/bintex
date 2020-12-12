@@ -1,8 +1,8 @@
 module.exports = {
   theme: {
     fontFamily: {
-      display: ['Crimson Text'],
-      body: ['Open Sans']
+      'serif': ['Yeseva One'],
+      'sans': ['Josefin Sans']
     },
     extend: {
       screens: {
@@ -18,9 +18,9 @@ module.exports = {
           dark: '#2A3D66'
         },
         accent: {
-          light: '#D8C7FF',
-          default: '#B99AFF',
-          dark: '#5D54A4'
+          light: '#A4C6FF',
+          default: '#6CA3FF',
+          dark: '#2576FF'
         }
       }
     }
