@@ -10,12 +10,12 @@ const Head2 = () => {
       <div className="relative z-0 flex h-auto bg-accent md:h-screen max-w-screen">
         <div className={`container m-auto ${Pad}`}>
           <div className="grid items-center grid-cols-2 gap-7 md:grid-cols-12">
-            <div className="col-span-8 pt-16 md:pt-0">
+            <div className="col-span-8 pt-24 md:pt-0">
               <Hero2 />
             </div>
             <div className="col-span-4 px-6 text-center md:px-0 md:text-right">
               <div className="container max-w-sm py-12 mx-auto">
-                <h1 className="text-6xl font-bold leading-tight text-white">
+                <h1 className="text-5xl font-bold leading-tight text-white lg:text-6xl">
                   Pick, Pack, and Ship.
                 </h1>
                 <hr className="w-12 h-1 mx-auto mt-8 bg-yellow-400 rounded-full md:mr-0" />

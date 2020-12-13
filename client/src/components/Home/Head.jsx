@@ -16,14 +16,16 @@ const Head = () => {
           <div className="grid items-center grid-cols-2 gap-7 md:grid-cols-12">
             <div className="col-span-4 px-6 text-center md:px-0 md:text-left">
               <div className="container max-w-sm py-12 mx-auto">
-                <h1 className="text-6xl font-bold leading-tight">Open Your World With Us.</h1>
+                <h1 className="text-5xl font-bold leading-tight lg:text-6xl">
+                  Open Your World With Us.
+                </h1>
                 <hr className="w-12 h-1 mx-auto mt-8 bg-yellow-400 rounded-full md:mx-0" />
                 <p className="mt-6 text-2xl leading-tight text-primary-dark">
                   Your new domestic cargo transporter is here!
                 </p>
               </div>
             </div>
-            <div className="col-span-8 pb-16 md:pb-0">
+            <div className="col-span-8 pb-24 md:pb-0">
               <Hero1 />
             </div>
           </div>
