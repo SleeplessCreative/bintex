@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Button from '../../components/Button';
-
 const Blog = () => {
   return (
     <section id="blog" className="h-screen py-20 g:py-40 bg-accent">

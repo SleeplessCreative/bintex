@@ -1,14 +1,12 @@
 import React from 'react';
-import Header from '../../layout/Header';
-import { Hero1, Hero2, Hero3 } from '../../svg/index';
-
-const Pad = `px-2 sm:px-6 lg:px-12 xl:px-16`;
+import { Hero2 } from '../../svg/index';
+import { SideMargin } from '../../containers/index';
 
 const Head2 = () => {
   return (
     <>
       <div className="relative z-0 flex h-auto bg-accent md:h-screen max-w-screen">
-        <div className={`container m-auto ${Pad}`}>
+        <div className={`container m-auto ${SideMargin}`}>
           <div className="grid items-center grid-cols-2 gap-7 md:grid-cols-12">
             <div className="col-span-8 pt-24 md:pt-0">
               <Hero2 />

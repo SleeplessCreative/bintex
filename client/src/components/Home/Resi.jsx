@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import Tracking from './Tracking';
-
-import Search from '../../svg/Search';
-import Arrow from '../../svg/Arrow';
+import { Arrow, Search } from '../../svg/index';
 
 const Resi = () => {
   const [noResi, setNoResi] = useState({

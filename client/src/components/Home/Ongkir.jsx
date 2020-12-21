@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import Button from '../../components/Button';
+import Button from '../../containers/Button';
 
 const Ongkir = () => {
   const [data, setData] = useState({
