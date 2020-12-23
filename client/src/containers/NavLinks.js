@@ -13,7 +13,7 @@ const NavLinks = () => {
   };
 
   return (
-    <nav className="flex flex-col items-center py-3 bg-white lg:flex-row">
+    <nav className="flex flex-col items-center py-3 bg-transparent lg:flex-row">
       <Anchor className="relative">
         <AnchorLink href="#head">Home</AnchorLink>
       </Anchor>
