@@ -6,6 +6,14 @@ module.exports = {
         tailwindConfig: `tailwind.config.js`
       }
     },
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        color: `blue`,
+        showSpinner: false,
+        trickle: false,
+      }
+    }
   ]
 };
