@@ -12,8 +12,9 @@ module.exports = {
       options: {
         color: `blue`,
         showSpinner: false,
-        trickle: false,
+        trickle: false
       }
-    }
+    },
+    'babel-plugin-emotion'
   ]
 };
