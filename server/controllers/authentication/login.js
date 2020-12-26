@@ -2,6 +2,8 @@ const bcrypt = require("bcrypt");
 const { pool } = require("../../db/dev/pool");
 const error = require("../error");
 
+const jwt = require("jsonwebtoken");
+
 const db = require("../../models");
 const { roles } = require("../../models");
 const Users = db.users;
@@ -37,6 +39,7 @@ exports.login = async (req, res, next) => {
       include: [
         {
           model: db["roles"],
+          as: roles,
           required: true,
           attributes: ["role_id"],
         },
@@ -58,8 +61,34 @@ exports.login = async (req, res, next) => {
 
     const authorized = await bcrypt.compare(password, hashedPassword);
 
+    let redirectUrl;
+    switch (findUserData[0]["roles.role_id"]) {
+      case 1:
+        redirectUrl = "https://administrator.bintex.id";
+        break;
+      case 4:
+        redirectUrl = "https://agent.bintex.id";
+        break;
+    }
+
     if (authorized) {
-      return res.status(202).json("Logged in.");
+      dataToken = {
+        userId: findUserData[0].user_id,
+        name: findUserData[0].name,
+        email: findUserData[0].email,
+        pfp: findUserData[0].profile_picture,
+        rolesId: findUserData[0]["roles.role_id"],
+        redirectUrl: redirectUrl,
+      };
+
+      console.log(dataToken);
+      const token = jwt.sign(dataToken, "bintex-secret-token", {
+        expiresIn: "12h",
+      });
+      return res.status(202).json({
+        message: "Ok",
+        token: "bearer " + token,
+      });
     } else {
       error.errorFunc(401, "Wrong email/password!");
     }

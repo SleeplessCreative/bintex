@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authentication");
 const costRoutes = require("./routes/deliveryCost");
 const agentRoutes = require("./routes/agent");
 const driverRoutes = require("./routes/driver");
+const isAuth = require("./middlewares/is-auth");
 
 const PORT = process.env.PORT || 8000;
 
@@ -21,6 +22,8 @@ app.use(cors());
 app.get("/", (req, res, next) => {
   res.status(200).json("Welcome to the server side of Bintex!");
 });
+
+app.use("/api/is-auth", isAuth);
 
 app.use("/api/auth", authRoutes);
 
