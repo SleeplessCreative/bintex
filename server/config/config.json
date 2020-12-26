@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "bintexdbdb",
+    "password": "open0ur0world",
+    "database": "bintexdbdb",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "bintexdbdb",
+    "password": "open0ur0world",
+    "database": "bintexdbstgdb",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "bintexdbdb",
+    "password": "open0ur0world",
+    "database": "bintexdbproddb",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
