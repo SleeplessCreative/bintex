@@ -13,6 +13,7 @@ const isAuth = require("./middlewares/is-auth");
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+const env = process.env.NODE_ENV || "development";
 
 app.use(express.json());
 
