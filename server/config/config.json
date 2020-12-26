@@ -6,7 +6,7 @@
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
-  "test": {
+  "staging": {
     "username": "bintexdbdb",
     "password": "open0ur0world",
     "database": "bintexdbstgdb",
