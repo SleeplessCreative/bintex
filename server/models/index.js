@@ -1,7 +1,18 @@
 require("dotenv").config();
+const path = require("path");
+
+const env = process.env.NODE_ENV || "development";
+const config = require(path.join(__dirname, "../", "config", "config.json"))[
+  env.trim()
+];
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config
+);
 
 const db = {};
 
