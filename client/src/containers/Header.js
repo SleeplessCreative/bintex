@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Burger, LogoIcon } from '../svg/index';
 import tw from 'twin.macro';
 import Slide from 'react-reveal/Slide';
@@ -17,15 +17,19 @@ const Header = () => {
 
   //console.log(navbarOpen);
 
-  const changeBg = () => {
-    if (typeof window.scrollY != '0') {
-      setNavbarBg(true);
-    } else {
-      setNavbarBg(false);
+  useEffect(function mount() {
+    function changeBg() {
+      if (window.scrollY != '0') {
+        setNavbarBg(true);
+      } else {
+        setNavbarBg(false);
+      }
     }
-  };
 
-  typeof window.addEventListener('scroll', changeBg);
+    window.addEventListener('scroll', changeBg);
+
+    return function unMount() {};
+  });
 
   return (
     <header className={`sticky top-0 z-50 ${navbarBg ? NavScroll : NavState}`}>
