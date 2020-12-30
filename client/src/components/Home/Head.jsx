@@ -7,11 +7,9 @@ import { Hero1 } from '../../svg/index';
 const Head = () => {
   return (
     <>
-      <Header className="absolute top-0 z-50"/>
-      <div
-        id="head"
-        className="relative z-0 flex h-auto bg-white md:h-screen max-w-screen md:-mt-24"
-      >
+      <div id="head" />
+      <Header className="absolute top-0 z-50" />
+      <div className="relative z-0 flex h-auto bg-white md:pb-40 md:py-12 max-w-screen">
         <div className={`container m-auto ${SideMargin}`}>
           <div className="grid items-center grid-cols-2 gap-7 md:grid-cols-12">
             <div className="col-span-4 px-6 text-center md:px-0 md:text-left">
@@ -27,7 +25,7 @@ const Head = () => {
                 </Fade>
               </div>
             </div>
-            <div className="col-span-8 pb-24 md:pb-0">
+            <div className="col-span-8 pb-16 md:pb-0">
               <Fade right>
                 <Hero1 />
               </Fade>

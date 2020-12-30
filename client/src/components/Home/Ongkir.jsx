@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-import Button from '../../containers/Button';
+import { css } from '@emotion/react';
+import { Button, InputKota, InputColorTrans, TitleSec } from '../../containers/index';
+import { Reset } from '../../svg/index';
 
 const Ongkir = () => {
   const [data, setData] = useState({
@@ -41,56 +42,64 @@ const Ongkir = () => {
     // console.log('ahaha', cost.requested);
   };
 
-  console.log('ahaha', cost.requested);
-  console.log(data.origin, data.destination, data.weight);
+  //console.log('ahaha', cost.requested);
+  //console.log(data.origin, data.destination, data.weight);
 
   return (
-    <section id="cekongkir" className="py-20 bg-white lg:py-40">
-      <h1 className="text-4xl text-center">Cek Ongkir</h1>
-      <div className="leading-loose">
-        <form className="max-w-xl p-10 m-auto bg-white">
-          <div className="mt-2">
-            <input
-              className="w-full px-5 py-3 text-gray-700 bg-primary-light"
-              id="cus_name"
-              name="cus_name"
-              type="text"
-              required=""
-              placeholder="Asal"
-              aria-label=""
-              onChange={e => setData({ ...data, origin: e.target.value })}
-            />
-          </div>
-          <div className="mt-2">
-            <input
-              className="w-full px-5 py-3 text-gray-700 bg-primary-light"
-              id="cus_name"
-              name="cus_name"
-              type="text"
-              required=""
-              placeholder="Tujuan"
-              aria-label=""
-              onChange={e => setData({ ...data, destination: e.target.value })}
-            />
-          </div>
-          <div className="mt-2">
-            <input
-              className="w-full px-5 py-3 text-gray-700 bg-primary-light"
-              id="cus_name"
-              name="cus_name"
-              type="text"
-              required=""
-              placeholder="Berat (Kg)"
-              aria-label=""
-              onChange={e => setData({ ...data, weight: e.target.value })}
-            />
-          </div>
-          <Button className="w-full mt-2" size="lg" func={handleSubmit}>
-            Cek Ongkir
+    <section id="cekongkir" className="py-20 lg:py-40 bg-primary-light">
+      <h3 className={TitleSec}>Cek Ongkos Kirim</h3>
+      <form className="max-w-sm px-6 m-auto my-6 md:px-0 bg-primary-light md:max-w-md">
+        <div className="z-40 mt-3">
+          <InputKota
+            inputHolder="Kota Asal"
+            parentCallback={e => setData({ ...data, origin: e })}
+          />
+        </div>
+        <div className="z-20 mt-3">
+          <InputKota
+            inputHolder="Kota Tujuan"
+            parentCallback={e => setData({ ...data, destination: e })}
+          />
+        </div>
+        <div className="mt-3">
+          <input
+            id="input"
+            className={`w-full px-8 py-5 bg-white ${InputColorTrans}`}
+            placeholder="Berat (Kg)"
+            onChange={e => setData({ ...data, weight: e.target.value })}
+          />
+        </div>
+        <div className="relative">
+          <Button className="relative w-full mt-4" size="lg2" func={handleSubmit}>
+            {cost.requested ? (
+              <span className="text-xl">{cost.cost}</span>
+            ) : (
+              <span>Cek Ongkir</span>
+            )}
           </Button>
-          {cost.requested ? <div>{cost.cost}</div> : <div>kosong</div>}
-        </form>
-      </div>
+          {cost.requested ? (
+            <div
+              func={handleSubmit}
+              css={css`
+                position: absolute;
+                right: 10%;
+                top: 35%;
+                cursor: pointer;
+                padding: 10px;
+                background-color: #a4c6ff;
+                border-radius: 50%;
+                --text-opacity: 0.5;
+                :hover {
+                  --text-opacity: 1;
+                  background-color: #2576ff;
+                }
+              `}
+            >
+              <Reset />
+            </div>
+          ) : null}
+        </div>
+      </form>
     </section>
   );
 };

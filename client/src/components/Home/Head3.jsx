@@ -7,8 +7,8 @@ import { SideMargin } from '../../containers/index';
 const Head3 = () => {
   return (
     <>
-      <div className="relative z-0 flex h-auto bg-white md:h-screen max-w-screen">
-        <div className={`container m-auto ${SideMargin}`}>
+      <div className="relative z-0 flex h-auto bg-white md:py-24 max-w-screen">
+        <div className={`container m-auto pb-10 ${SideMargin}`}>
           <div className="grid items-center grid-cols-2 gap-7 md:grid-cols-12">
             <div className="col-span-4 px-6 text-center md:px-0 md:text-left">
               <div className="container max-w-sm py-12 mx-auto">
@@ -23,13 +23,20 @@ const Head3 = () => {
                 </Fade>
               </div>
             </div>
-            <div className="col-span-8 pb-24 md:pb-0">
+            <div className="col-span-8 pb-16 md:pb-0">
               <Fade right>
                 <Hero3 />
               </Fade>
             </div>
           </div>
         </div>
+        <svg
+          className="absolute bottom-0 w-full fill-current text-primary-light"
+          viewBox="0 0 1400 74"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 24C87.243 11.422 173.12 5.133 257.633 5.133 468.305 5.133 578.027 74 700 74c136.015 0 290.882-96.208 481.234-68.867C1268.807 17.71 1341.73 24 1400 24v50H0V24z" />
+        </svg>
       </div>
     </>
   );

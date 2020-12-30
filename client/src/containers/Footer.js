@@ -1,8 +1,9 @@
 import React from 'react';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import LogoIcon from '../svg/LogoIcon';
 
 const Footer = () => (
-  <div className="flex items-end w-full min-h-screen bg-white" id="footer">
+  <div className="flex items-end w-full bg-white" id="footer">
     <footer className="w-full bg-accent-light body-font">
       <div className="container flex flex-col flex-wrap px-5 py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap">
         <div className="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
@@ -60,13 +61,24 @@ const Footer = () => (
             </h2>
             <nav className="mb-10 list-none">
               <li className="mt-3">
-                <a className="cursor-pointer ">Blog</a>
+                <AnchorLink href="#head" className="cursor-pointer">
+                  Go to Top
+                </AnchorLink>
               </li>
               <li className="mt-3">
-                <a className="cursor-pointer ">Cek Resi</a>
+                <AnchorLink href="#blog" className="cursor-pointer">
+                  Blog
+                </AnchorLink>
               </li>
               <li className="mt-3">
-                <a className="cursor-pointer ">Cek Ongkir</a>
+                <AnchorLink href="#cekresi" className="cursor-pointer ">
+                  Cek Resi
+                </AnchorLink>
+              </li>
+              <li className="mt-3">
+                <AnchorLink href="#cekongkir" className="cursor-pointer ">
+                  Cek Ongkir
+                </AnchorLink>
               </li>
             </nav>
           </div>
