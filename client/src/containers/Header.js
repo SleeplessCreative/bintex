@@ -18,14 +18,14 @@ const Header = () => {
   //console.log(navbarOpen);
 
   const changeBg = () => {
-    if (window.scrollY != 0) {
+    if (typeof window.scrollY != '0') {
       setNavbarBg(true);
     } else {
       setNavbarBg(false);
     }
   };
 
-  window.addEventListener('scroll', changeBg);
+  typeof window.addEventListener('scroll', changeBg);
 
   return (
     <header className={`sticky top-0 z-50 ${navbarBg ? NavScroll : NavState}`}>
