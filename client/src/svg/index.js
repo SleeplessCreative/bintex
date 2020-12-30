@@ -8,3 +8,7 @@ export { default as LogoBg } from './LogoBg';
 export { default as LogoIcon } from './LogoIcon';
 export { default as Phone } from './Phone';
 export { default as Search } from './Search';
+export { default as Reset } from './Reset';
+export { default as Close } from './Close';
+export { default as EyeOff } from './EyeOff';
+export { default as EyeOn } from './EyeOn';

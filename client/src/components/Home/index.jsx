@@ -5,3 +5,5 @@ export { default as Head3 } from './Head3';
 export { default as Ongkir } from './Ongkir';
 export { default as Resi } from './Resi';
 export { default as Tracking } from './Tracking';
+export { default as SEO } from './SEO';
+export { default as Faq } from './Faq';
