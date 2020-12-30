@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import { TitleSec, Button, InputColorTrans } from '../../containers/index';
 import Tracking from './Tracking';
-import { Arrow, Search } from '../../svg/index';
+import { Arrow, Search, Reset } from '../../svg/index';
 
 const Resi = () => {
   const [noResi, setNoResi] = useState({
@@ -49,46 +50,52 @@ const Resi = () => {
       });
   };
 
-  const handleHideSubmit = () => {
+  const handleHideSubmit = e => {
+    e.preventDefault();
     setResi({ ...Resi, receipt: false });
+    setNoResi({ ...noResi, receipt: '' });
+    document.getElementById('search').value = '';
   };
 
   // console.log(resi.receipt);
   return (
-    <>
-      <section id="cekresi" className="py-20 lg:py-40 bg-primary-light">
-        <h1 className="text-4xl text-center">Cek Resi</h1>
-        <div className="content-center leading-loose bg-primary-light">
-          <form method="POST" className="items-center content-center m-auto text-center">
-            <div className="container flex items-center content-center justify-center p-8 m-auto bg-primary-light">
-              <input
-                type="search"
-                name="search"
-                placeholder="Search"
-                className="p-2"
-                onChange={e => setNoResi({ ...noResi, receipt: e.target.value })}
-              />
-              <button type="submit" className="items-center w-12 p-1" onClick={handleSubmit}>
+    <section id="cekresi" className="py-10 bg-white lg:py-32">
+      <h3 className={TitleSec}>Cek Resi</h3>
+      <div className="w-1/2 mx-auto my-6 text-gray-500">
+        <section className="flex items-center justify-center h-20">
+          <form method="POST" className="flex items-center justify-center w-1/2">
+            <input
+              id="search"
+              type="search"
+              name="search"
+              placeholder="Search"
+              className={`py-5 pl-8 pr-12 bg-primary-light ${InputColorTrans}`}
+              onChange={e => setNoResi({ ...noResi, receipt: e.target.value })}
+            />
+            {resi.receipt ? (
+              <Button
+                type="reset"
+                size="sm"
+                className="-ml-16 transform border-none rounded-full"
+                func={handleHideSubmit}
+              >
+                <Reset />
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                size="sm"
+                className="-ml-16 transform border-none rounded-full"
+                func={handleSubmit}
+              >
                 <Search />
-              </button>
-            </div>
+              </Button>
+            )}
           </form>
-        </div>
-        {resi.receipt ? (
-          <div>
-            <Tracking resi={resi} />
-            <div className="w-full mt-10 text-center bg-accent-light">
-              <button className="w-16" type="submit" onClick={handleHideSubmit}>
-                <Arrow />
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </section>
-      <section></section>
-    </>
+        </section>
+        {resi.receipt ? <Tracking resi={resi} /> : null}
+      </div>
+    </section>
   );
 };
 

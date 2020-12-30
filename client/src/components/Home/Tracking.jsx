@@ -1,44 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Fade from 'react-reveal/Fade';
 
 const Tracking = ({ resi }) => {
   return (
-    <>
-      <div className="container m-auto justify-center bg-primary-default pt-5">
-        <h1 className="text-6x1 text-center pb-4">Informasi</h1>
-        <table className="justify-center m-auto ">
-          <tbody>
-            <tr className="bg-primary-light">
-              <td className="border px-4 py-2 w-3/5">No Resi</td>
-              <td className="border px-4 py-2">{resi.receiptNumber}</td>
-            </tr>
-            <tr className="bg-gray-100">
-              <td className="border px-4 py-2">Status</td>
-              <td className="border px-4 py-2">{resi.status}</td>
-            </tr>
-            <tr className="bg-primary-light">
-              <td className="border px-4 py-2">Tanggal Pengiriman</td>
-              <td className="border px-4 py-2">{resi.shipmentDate}</td>
-            </tr>
-            <tr className="bg-gray-100">
-              <td className="border px-4 py-2">Pengirim</td>
-              <td className="border px-4 py-2">{resi.shipper}</td>
-            </tr>
-            <tr className="bg-primary-light">
-              <td className="border px-4 py-2">Asal</td>
-              <td className="border px-4 py-2">{resi.origin}</td>
-            </tr>
-            <tr className="bg-gray-100">
-              <td className="border px-4 py-2">Penerima</td>
-              <td className="border px-4 py-2">{resi.consignee}</td>
-            </tr>
-            <tr className="bg-primary-light">
-              <td className="border px-4 py-2">Tujuan</td>
-              <td className="border px-4 py-2">{resi.destination}</td>
-            </tr>
+    <Fade bottom>
+      <h1 className="py-6 text-xl text-center md:text-3xl">Informasi</h1>
+      <div className="flex justify-center m-auto">
+        <table className="min-w-full bg-white">
+          <tbody className="text-lg bg-white text-primary-dark">
+            <Row dataLeft="No Resi" dataRight={resi.receiptNumber} />
+            <Row dataLeft="Status" dataRight={resi.status} />
+            <Row dataLeft="Tanggal Pengiriman" dataRight={resi.shipmentDate} />
+            <Row dataLeft="Pengirim" dataRight={resi.shipper} />
+            <Row dataLeft="Asal" dataRight={resi.origin} />
+            <Row dataLeft="Penerima" dataRight={resi.consignee} />
+            <Row dataLeft="Tujuan" dataRight={resi.destination} />
           </tbody>
         </table>
       </div>
-    </>
+    </Fade>
+  );
+};
+
+const Row = ({ dataLeft, dataRight }) => {
+  const col = `w-1/2 border-b-2 py-4 px-6`;
+  return (
+    <tr>
+      <td className={col}>{dataLeft}</td>
+      <td className={col}>{dataRight}</td>
+    </tr>
   );
 };
 
