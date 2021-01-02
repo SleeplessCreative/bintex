@@ -9,16 +9,17 @@ const sizes = {
   xxl: `mx-auto text-md w-full px-4 py-4 rounded-full`
 };
 
-const Button = ({ children, className = '', size, func }) => {
+const Button = ({ children, className = '', size, func, type = '' }) => {
   return (
     <button
-      type="button"
+      type={``}
       className={`
         ${sizes[size] || sizes.default}
         ${className}
         bg-accent
         hover:bg-accent-dark
         text-white
+        focus:outline-none
     `}
       onClick={func}
     >
