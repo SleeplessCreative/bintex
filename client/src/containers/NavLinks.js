@@ -8,7 +8,6 @@ const Anchor = tw.div`block px-6 mt-5 font-semibold lg:inline-block lg:mt-0 text
 
 const NavLinks = () => {
   const nav = () => {
-    console.log('masuk');
     navigate('/login/');
   };
 

@@ -15,8 +15,7 @@ const Login = () => {
 
   const [acc, setAcc] = useState({
     email: '',
-    password: '',
-    url: ''
+    password: ''
   });
 
   const handleSubmit = async e => {
@@ -28,6 +27,7 @@ const Login = () => {
       })
       .then(res => {
         Cookies.set('acc', res.data, { domain: '.bintex.id', secure: true, expires: 2 });
+        Cookies.getJSON();
         var user = jwt_decode(res.data.token);
         window.location.href = user.redirectUrl;
       })
@@ -103,7 +103,7 @@ const Login = () => {
                   `}
                   onClick={showHide}
                 >
-                  {status.type === 'password' ? <EyeOn /> : <EyeOff />}
+                  {hide.type === 'password' ? <EyeOn /> : <EyeOff />}
                 </div>
               </div>
             </div>
