@@ -27,7 +27,6 @@ const Login = () => {
       })
       .then(res => {
         Cookies.set('acc', res.data, { domain: '.bintex.id', secure: true, expires: 2 });
-        Cookies.getJSON();
         var user = jwt_decode(res.data.token);
         window.location.href = user.redirectUrl;
       })
