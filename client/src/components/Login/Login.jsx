@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 import { css } from '@emotion/react';
 import { Button } from '../../containers/index';
 import { LogoBg, Close, EyeOff, EyeOn } from '../../svg/index';
@@ -6,14 +9,37 @@ import { LogoBg, Close, EyeOff, EyeOn } from '../../svg/index';
 const inputStyle = `block w-full px-10 py-4 transition-colors duration-300 transform border-none rounded-full text-primary-dark focus:outline-none focus:bg-accent-light bg-primary-light`;
 
 const Login = () => {
-  const [status, setStatus] = useState({
+  const [hide, setHide] = useState({
     type: 'password'
   });
+
+  const [acc, setAcc] = useState({
+    email: '',
+    password: '',
+    url: ''
+  });
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    await axios
+      .post('https://staging.bintex.id/api/auth/login', {
+        email: acc.email,
+        password: acc.password
+      })
+      .then(res => {
+        Cookies.set('acc', res.data, { domain: '.bintex.id', secure: true, expires: 2 });
+        var user = jwt_decode(res.data.token);
+        window.location.href = user.redirectUrl;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const showHide = e => {
     e.preventDefault();
     e.stopPropagation();
-    setStatus({ ...status, type: status.type === 'password' ? 'input' : 'password' });
+    setHide({ ...hide, type: hide.type === 'password' ? 'input' : 'password' });
   };
 
   return (
@@ -47,34 +73,46 @@ const Login = () => {
             </p>
             <span className="w-1/5 border-b lg:w-1/4"></span>
           </div>
-          <div className="relative mt-4">
-            <input className={inputStyle} type="email" placeholder="email"></input>
-          </div>
-          <div className="mt-4">
-            <div className="relative">
-              <input className={`${inputStyle}`} type={status.type} placeholder="password"></input>
-              <div
-                css={css`
-                  position: absolute;
-                  right: 10%;
-                  top: 25%;
-                  cursor: pointer;
-                  --text-opacity: 0.5;
-                  :hover {
-                    --text-opacity: 1;
-                  }
-                `}
-                onClick={showHide}
-              >
-                {status.type === 'password' ? <EyeOn /> : <EyeOff />}
+          <form onSubmit={handleSubmit}>
+            <div className="relative mt-4">
+              <input
+                className={inputStyle}
+                type="email"
+                placeholder="email"
+                onChange={e => setAcc({ ...acc, email: e.target.value })}
+              ></input>
+            </div>
+            <div className="mt-4">
+              <div className="relative">
+                <input
+                  className={`${inputStyle}`}
+                  type={hide.type}
+                  placeholder="password"
+                  onChange={e => setAcc({ ...acc, password: e.target.value })}
+                ></input>
+                <div
+                  css={css`
+                    position: absolute;
+                    right: 10%;
+                    top: 25%;
+                    cursor: pointer;
+                    --text-opacity: 0.5;
+                    :hover {
+                      --text-opacity: 1;
+                    }
+                  `}
+                  onClick={showHide}
+                >
+                  {status.type === 'password' ? <EyeOn /> : <EyeOff />}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="mt-3">
-            <Button className="" size="xxl">
-              Login
-            </Button>
-          </div>
+            <div className="mt-3">
+              <Button className="" size="xxl" type="submit">
+                Login
+              </Button>
+            </div>
+          </form>
           <a
             href="#"
             className="block mt-4 text-xs text-center text-opacity-50 text-primary-dark hover:text-opacity-100"
