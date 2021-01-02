@@ -63,7 +63,12 @@ const Resi = () => {
       <h3 className={TitleSec}>Cek Resi</h3>
       <div className="w-1/2 mx-auto my-6 text-gray-500">
         <section className="flex items-center justify-center h-20">
-          <form method="POST" className="flex items-center justify-center w-1/2">
+          <form
+            method="POST"
+            className="flex items-center justify-center w-1/2"
+            onSubmit={handleSubmit}
+            onAbort={handleHideSubmit}
+          >
             <input
               id="search"
               type="search"
@@ -74,7 +79,6 @@ const Resi = () => {
             />
             {resi.receipt ? (
               <Button
-                type="reset"
                 size="sm"
                 className="-ml-16 transform border-none rounded-full"
                 func={handleHideSubmit}
@@ -82,12 +86,7 @@ const Resi = () => {
                 <Reset />
               </Button>
             ) : (
-              <Button
-                type="submit"
-                size="sm"
-                className="-ml-16 transform border-none rounded-full"
-                func={handleSubmit}
-              >
+              <Button type="submit" size="sm" className="-ml-16 transform border-none rounded-full">
                 <Search />
               </Button>
             )}

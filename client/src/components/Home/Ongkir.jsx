@@ -48,7 +48,10 @@ const Ongkir = () => {
   return (
     <section id="cekongkir" className="py-20 lg:py-40 bg-primary-light">
       <h3 className={TitleSec}>Cek Ongkos Kirim</h3>
-      <form className="max-w-sm px-6 m-auto my-6 md:px-0 bg-primary-light md:max-w-md">
+      <form
+        className="max-w-sm px-6 m-auto my-6 md:px-0 bg-primary-light md:max-w-md"
+        onSubmit={handleSubmit}
+      >
         <div className="z-40 mt-3">
           <InputKota
             inputHolder="Kota Asal"
@@ -70,7 +73,7 @@ const Ongkir = () => {
           />
         </div>
         <div className="relative">
-          <Button className="relative w-full mt-4" size="lg2" func={handleSubmit}>
+          <Button className="relative w-full mt-4" size="lg2" type="submit">
             {cost.requested ? (
               <span className="text-xl">{cost.cost}</span>
             ) : (
