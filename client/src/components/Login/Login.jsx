@@ -26,7 +26,7 @@ const Login = () => {
         password: acc.password
       })
       .then(res => {
-        Cookies.set('acc', res.data, { domain: '.bintex.id', secure: true, expires: 2 });
+        Cookies.set('acc', res.data.token, { domain: '.bintex.id', secure: true, expires: 2 });
         let token = res.data.token.substring(7);
         let detoken = jwt_decode(token);
         window.location.href = detoken.redirectUrl;
