@@ -13,6 +13,8 @@ const Login = () => {
     type: 'password'
   });
 
+  const [status, setStatus] = useState(true);
+
   const [acc, setAcc] = useState({
     email: '',
     password: ''
@@ -31,8 +33,8 @@ const Login = () => {
         let detoken = jwt_decode(token);
         window.location.href = detoken.redirectUrl;
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
+        setStatus(false);
       });
   };
 
@@ -79,7 +81,10 @@ const Login = () => {
                 className={inputStyle}
                 type="email"
                 placeholder="email"
-                onChange={e => setAcc({ ...acc, email: e.target.value })}
+                onChange={e => {
+                  setAcc({ ...acc, email: e.target.value });
+                  setStatus(true);
+                }}
               ></input>
             </div>
             <div className="mt-4">
@@ -88,7 +93,10 @@ const Login = () => {
                   className={`${inputStyle}`}
                   type={hide.type}
                   placeholder="password"
-                  onChange={e => setAcc({ ...acc, password: e.target.value })}
+                  onChange={e => {
+                    setAcc({ ...acc, password: e.target.value });
+                    setStatus(true);
+                  }}
                 ></input>
                 <div
                   css={css`
@@ -112,9 +120,32 @@ const Login = () => {
                 Login
               </Button>
             </div>
+            {status ? null : (
+              <div
+                className="relative px-4 py-3 mt-3 text-red-700 bg-red-100 rounded-full"
+                role="alert"
+              >
+                <div
+                  css={css`
+                    position: absolute;
+                    left: 13%;
+                    top: 30%;
+                  `}
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <path
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                      clipRule="evenodd"
+                      fillRule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <p className="ml-5 text-sm text-center text-red-700">Wrong Email/Password!</p>
+              </div>
+            )}
           </form>
           <a
-            href="#"
+            href="https://bintex.id/404"
             className="block mt-4 text-xs text-center text-opacity-50 text-primary-dark hover:text-opacity-100"
           >
             Forget Password?
@@ -122,7 +153,7 @@ const Login = () => {
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b md:w-1/4"></span>
             <a
-              href="#"
+              href="https://bintex.id/404"
               className="text-xs text-opacity-50 uppercase text-primary-dark hover:text-opacity-100"
             >
               or sign up
